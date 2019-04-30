@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Markers</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var marker;
+
+    function initMap(userLatLng) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: userLatLng
+        });
+        map.addListener('click', function (e) {
+            placeMarkerAndPanTo(e.latLng, map);
+        });
+
+    }
+
+    function placeMarkerAndPanTo(latLng, map) {
+        if (marker && marker.setMap) {
+            marker.setMap(null);
+        }
+        marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+        alert(marker.getPosition().lat());
+        alert(marker.getPosition().lng());
+        marker.addListener('click', function () {
+            map.setZoom(18);
+            map.setCenter(marker.getPosition());
+        });
+        map.panTo(latLng);
+
+    }
+
+    function writeAddressName(latLng) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+                "location": latLng
+            },
+            function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK)
+                    document.getElementById("address").innerHTML = results[0].formatted_address;
+                else
+                    document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
+            });
+    }
+
+    function geolocationSuccess(position) {
+        var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        writeAddressName(userLatLng);
+        initMap(userLatLng);
+    }
+
+    function geolocationError(positionError) {
+        initMap(new google.maps.LatLng(55.8304307, 49.0660806));
+    }
+
+    function geolocateUser() {
+        if (navigator.geolocation) {
+            var positionOptions = {
+                enableHighAccuracy: true,
+                timeout: 10 * 1000
+            };
+            navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, positionOptions);
+        } else
+            document.getElementById("error").innerHTML += "Your browser doesn't support the Geolocation API";
+    }
+
+    window.onload = geolocateUser;
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-Gg2z_RGw4Pdmiy82IEIVwBtBMpvtg14&language=ru&region=RU&sensor=true">
+</script>
+</body>
+</html>

@@ -31,7 +31,7 @@ public class ImageController {
             type = MediaType.IMAGE_PNG;
         }
 
-        if (tokens[tokens.length - 1].toLowerCase().equals("jpeg")) {
+        if (tokens[tokens.length - 1].toLowerCase().equals("jpeg")||tokens[tokens.length - 1].toLowerCase().equals("jpg")) {
             type = MediaType.IMAGE_JPEG;
         }
 
