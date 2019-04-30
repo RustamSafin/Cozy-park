@@ -13,6 +13,8 @@ import ru.cozypark.cozypark.payloads.IssueDtoResponse;
 import ru.cozypark.cozypark.repositories.IssueRepository;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.function.Function;
 
 @Service
 public class IssueService {
@@ -39,17 +41,25 @@ public class IssueService {
     public Page<IssueDtoResponse> findAllByUser(User user, Pageable pageable) {
         Page<Issue> issues = repository.findByUserId(user.getId(), pageable);
 
-        return issues.map(issue -> {
-            IssueDtoResponse res = new IssueDtoResponse();
-
-            BeanUtils.copyProperties(issue, res);
-            res.setImageUrl("/img/" + issue.getId());
-            res.setUserId(issue.getUser().getId());
-            return res;
-        });
+        return issues.map(mapToDto());
     }
 
     public Issue findById(Long issueId) {
         return repository.findById(issueId).orElseThrow(() -> new ResourceAccessException(""));
+    }
+
+    public Page<IssueDtoResponse> search(String query, Pageable pageable) {
+        return query == null || query.isEmpty() ? repository.findAll(pageable).map(mapToDto()) : repository.findByTitleLikeOrBodyLike("%" + query + "%","%" + query + "%",pageable).map(mapToDto());
+    }
+
+    private Function<Issue, IssueDtoResponse> mapToDto(){
+        return issue -> {
+            IssueDtoResponse res = new IssueDtoResponse();
+
+            BeanUtils.copyProperties(issue, res);
+            res.setImageUrl("/img?issueId=" + issue.getId());
+            res.setUserId(issue.getUser().getId());
+            return res;
+        };
     }
 }
