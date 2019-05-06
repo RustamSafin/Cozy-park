@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @Entity
 @EqualsAndHashCode
 @Data
+@Table(name = "issuer")
 public class User implements UserDetails {
 
     @Id
