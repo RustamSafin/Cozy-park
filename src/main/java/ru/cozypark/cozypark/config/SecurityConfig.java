@@ -108,8 +108,6 @@ public class SecurityConfig {
                     .authorizeRequests()
                     .antMatchers("/reg").permitAll()
                     .antMatchers("/login").permitAll()
-                    .antMatchers("/swagger-ui.html/**").permitAll()
-                    .antMatchers("/swagger-ui.html").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .cors().and().csrf().disable()
@@ -123,7 +121,7 @@ public class SecurityConfig {
 
         @Override
         public void configure(WebSecurity web) throws Exception {
-            web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/icons/**");
+            web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/icons/**", "/swagger-ui.html/**");
         }
     }
 
