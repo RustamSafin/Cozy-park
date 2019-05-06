@@ -4,8 +4,8 @@
 
     <div class="row">
         <#list issues.content as issue>
-            <div class="col m4 s12 l3">
-                <div class="card">
+            <div class="col m4 s12 l4">
+                <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light"><img class="activator"
                                                                                       src="${issue.imageUrl}">
                     </div>
@@ -17,10 +17,8 @@
                             <div class="col s6">
                                 <div class="switch">
                                     <label>
-                                        Off
                                         <input type="checkbox">
                                         <span class="lever"></span>
-                                        On
                                     </label>
                                 </div>
                             </div>
