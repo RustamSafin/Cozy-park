@@ -35,8 +35,8 @@
                             <div id="map" style=" height: 300px;"></div>
                         </div>
                     </div>
-                    <input name="lat" id="lat" type="text" hidden value="">
-                    <input name="lng" id="lng" type="text" hidden value="   ">
+                    <input name="lat" id="lat" type="hidden">
+                    <input name="lng" id="lng" type="hidden">
                     <div class="row">
                         <div class="col s12 m3">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -53,7 +53,7 @@
 
         function initMap(userLatLng) {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
+                zoom: 16,
                 center: userLatLng
             });
             map.addListener('click', function (e) {
@@ -70,8 +70,8 @@
                 position: latLng,
                 map: map
             });
-            document.getElementById("lat").value=marker.getPosition().lat();
-            document.getElementById("lng").value=marker.getPosition().lng();
+            document.getElementById("lat").value = marker.getPosition().lat().toString();
+            document.getElementById("lng").value = marker.getPosition().lng().toString();
             // alert(marker.getPosition().lat());
             // alert(marker.getPosition().lng());
             marker.addListener('click', function () {
