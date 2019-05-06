@@ -59,8 +59,8 @@ public class SecurityConfig {
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/api/**").authorizeRequests()
                     .antMatchers("/api/auth/**").permitAll()
+                    .antMatchers("/api/v2/api-docs/").permitAll()
                     .antMatchers("/api/**").authenticated()
-                    .antMatchers("/api/v2/api-docs").permitAll()
                     .and()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                     .and()
