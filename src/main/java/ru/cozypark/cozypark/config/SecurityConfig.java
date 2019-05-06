@@ -59,7 +59,6 @@ public class SecurityConfig {
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/api/**").authorizeRequests()
                     .antMatchers("/api/auth/**").permitAll()
-                    .antMatchers("/api/v2/api-docs/").permitAll()
                     .antMatchers("/api/**").authenticated()
                     .and()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
@@ -110,6 +109,9 @@ public class SecurityConfig {
                     .antMatchers("/reg").permitAll()
                     .antMatchers("/login").permitAll()
                     .antMatchers("/swagger-ui.html/**").permitAll()
+                    .antMatchers("/swagger-resources/**").permitAll()
+                    .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
+                    .antMatchers("/v2/api-docs").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .cors().and().csrf().disable()
@@ -123,7 +125,7 @@ public class SecurityConfig {
 
         @Override
         public void configure(WebSecurity web) throws Exception {
-            web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/icons/**","/webjars/**");
+            web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/icons/**");
         }
     }
 
