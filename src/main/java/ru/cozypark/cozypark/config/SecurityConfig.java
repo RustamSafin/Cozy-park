@@ -60,6 +60,7 @@ public class SecurityConfig {
             http.antMatcher("/api/**").authorizeRequests()
                     .antMatchers("/api/auth/**").permitAll()
                     .antMatchers("/api/**").authenticated()
+                    .antMatchers("/api/v2/api-docs").permitAll()
                     .and()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                     .and()
@@ -122,7 +123,7 @@ public class SecurityConfig {
 
         @Override
         public void configure(WebSecurity web) throws Exception {
-            web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/icons/**","/webjars/springfox-swagger-ui/**");
+            web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/icons/**","/webjars/**");
         }
     }
 
