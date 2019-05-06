@@ -108,7 +108,7 @@ public class SecurityConfig {
                     .authorizeRequests()
                     .antMatchers("/reg").permitAll()
                     .antMatchers("/login").permitAll()
-                    .antMatchers("/swagger-ui.html").permitAll()
+                    .antMatchers("/swagger-ui.html/").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .cors().and().csrf().disable()
