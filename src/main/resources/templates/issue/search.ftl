@@ -14,7 +14,7 @@
                                     class="material-icons right">more_vert</i></span>
                         <div class="row">
                             <div class="col s6"><p><a href="/post/${issue.id}">Show more</a></p></div>
-                            <div class="col s6">
+                            <div class="col s6 right-align">
                                 <div class="switch">
                                     <label>
                                         <input type="checkbox">
