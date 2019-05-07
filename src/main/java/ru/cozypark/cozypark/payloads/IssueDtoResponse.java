@@ -21,6 +21,6 @@ public class IssueDtoResponse {
 
     private Long userId;
 
-    private Long lat;
-    private Long lng;
+    private String lat;
+    private String lng;
 }

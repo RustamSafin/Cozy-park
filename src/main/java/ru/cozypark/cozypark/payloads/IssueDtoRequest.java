@@ -15,6 +15,6 @@ public class IssueDtoRequest {
 
     private Long userId;
 
-    private Long lat;
-    private Long lng;
+    private String lat;
+    private String lng;
 }

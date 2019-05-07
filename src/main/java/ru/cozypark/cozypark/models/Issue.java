@@ -23,8 +23,8 @@ public class Issue {
 
     private String imageName;
 
-    private Long lat;
-    private Long lng;
+    private String lat;
+    private String lng;
 
     @ManyToOne
     private User user;
