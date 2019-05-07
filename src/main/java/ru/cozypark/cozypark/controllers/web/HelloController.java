@@ -11,4 +11,9 @@ public class HelloController {
     public String hello(){
         return "search";
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String mainPage(){
+        return "redirect:/issue/search";
+    }
 }

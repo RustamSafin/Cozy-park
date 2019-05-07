@@ -2,9 +2,9 @@
 
 <@main.main>
     <div class="row">
-        <form class="col m8 offset-m2 s12" action="/reg" method="post">
+        <form class="col s12" action="/reg" method="post">
             <div class="row">
-                <div class="col s12 m7">
+                <div class="col m8 offset-m2 s12">
                     <div class="card">
                         <div class="card-content">
                             <div class="row">
