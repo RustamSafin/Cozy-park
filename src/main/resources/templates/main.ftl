@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper green darken-3">
         <form action="/issue/search">
             <div class="input-field">
                 <input id="search" type="search" required name="query">
@@ -32,7 +32,7 @@
     <#nested>
 </div>
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" href="/issue">
+    <a class="btn-floating btn-large green darken-3" href="/issue">
         <i class="large material-icons">add</i>
     </a>
 </div>
