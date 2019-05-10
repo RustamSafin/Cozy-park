@@ -18,8 +18,7 @@ public class Issue {
 
     private String body;
 
-    @Lob
-    private byte[] imageContent;
+    private String imageContent;
 
     private String imageName;
 
