@@ -21,7 +21,7 @@
                     </div>
                     <div class="row">
                         <div class="file-field input-field col s12">
-                            <div class="btn">
+                            <div class="btn green darken-3">
                                 <span>File</span>
                                 <input name="imageFile" type="file">
                             </div>
@@ -39,7 +39,7 @@
                     <input name="lng" id="lng" type="hidden">
                     <div class="row">
                         <div class="col s12 m3">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light  green darken-3" type="submit" name="action">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>

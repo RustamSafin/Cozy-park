@@ -28,6 +28,8 @@ public class UserService {
 
         user.setRole(Role.ROLE_USER);
 
+        repository.save(user);
+
         return user;
     }
 

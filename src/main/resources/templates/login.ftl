@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="card-action">
-                            <button class="btn waves-effect waves-light" type="submit">Submit
+                            <button class="btn waves-effect waves-light  green darken-3" type="submit">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>
