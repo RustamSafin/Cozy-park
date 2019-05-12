@@ -36,6 +36,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private Integer coin = 0;
+
     @JsonIgnore
     @Transient
     private Collection<? extends GrantedAuthority> authorities;

@@ -1,11 +1,9 @@
 package ru.cozypark.cozypark.controllers.web;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.cozypark.cozypark.payloads.ApiResponse;
 import ru.cozypark.cozypark.payloads.SignUpRequest;
 import ru.cozypark.cozypark.service.UserService;
 

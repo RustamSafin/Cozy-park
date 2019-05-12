@@ -12,6 +12,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.HtmlUtils;
 import ru.cozypark.cozypark.models.Issue;
 import ru.cozypark.cozypark.models.User;
 import ru.cozypark.cozypark.payloads.IssueDtoRequest;
@@ -35,7 +36,10 @@ public class IssueService {
     public void saveDto(IssueDtoRequest dtoRest, User user, MultipartFile file) throws IOException {
         Issue issue = new Issue();
 
-        BeanUtils.copyProperties(dtoRest, issue);
+        issue.setTitle(HtmlUtils.htmlEscape(dtoRest.getTitle()));
+        issue.setBody(HtmlUtils.htmlEscape(dtoRest.getBody()));
+        issue.setLat(HtmlUtils.htmlEscape(dtoRest.getLat()));
+        issue.setLng(HtmlUtils.htmlEscape(dtoRest.getLng()));
 
         issue.setUser(user);
 
@@ -53,9 +57,15 @@ public class IssueService {
     }
 
     public Page<IssueDtoResponse> findAllByUser(User user, Pageable pageable) {
-        Page<Issue> issues = repository.findByUserId(user.getId(), pageable);
+        return repository.findByUserId(user.getId(), pageable).map(mapToDto());
+    }
 
-        return issues.map(mapToDto());
+    public Page<IssueDtoResponse> findActiveByUserId(Long id, Pageable pageable){
+        return repository.findByUserIdAndActiveTrue(id, pageable).map(mapToDto());
+    }
+
+    public Page<IssueDtoResponse> findArchiveByUserId(Long id, Pageable pageable){
+        return repository.findByUserIdAndActiveFalse(id, pageable).map(mapToDto());
     }
 
     public Issue findById(Long issueId) {
