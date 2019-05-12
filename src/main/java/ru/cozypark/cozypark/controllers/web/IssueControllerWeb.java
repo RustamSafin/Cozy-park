@@ -26,6 +26,14 @@ public class IssueControllerWeb {
         this.service = service;
     }
 
+    @GetMapping("/user")
+    public String profile(Authentication authentication, Model model, Pageable pageable){
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("activeIssues", service.findActiveByUserId(user.getId(), pageable));
+        model.addAttribute("archiveIssues", service.findArchiveByUserId(user.getId(), pageable));
+        return "user/profile";
+    }
+
     @GetMapping("/search")
     public String list(Model model, @RequestParam(required = false) String query, Pageable pageable, Authentication authentication){
         model.addAttribute("issues", service.findAllByUser((User) authentication.getPrincipal(),pageable));

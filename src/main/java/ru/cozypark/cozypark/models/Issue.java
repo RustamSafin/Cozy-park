@@ -25,6 +25,8 @@ public class Issue {
     private String lat;
     private String lng;
 
+    private Boolean active = true;
+
     @ManyToOne
     private User user;
 }
