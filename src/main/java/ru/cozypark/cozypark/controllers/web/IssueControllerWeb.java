@@ -27,8 +27,8 @@ public class IssueControllerWeb {
     }
 
     @GetMapping("/search")
-    public String list(Model model, @RequestParam(required = false) String query, Pageable pageable){
-        model.addAttribute("issues", service.search(query, pageable));
+    public String list(Model model, @RequestParam(required = false) String query, Pageable pageable, Authentication authentication){
+        model.addAttribute("issues", service.findAllByUser((User) authentication.getPrincipal(),pageable));
         return "issue/search";
     }
 
